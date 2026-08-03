@@ -1,0 +1,40 @@
+// HC-SR04 Ultrasonic Sensor
+
+int trig = 10;
+int echo = 9;
+
+long duration;
+int cm;
+
+void setup()
+{
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // Clear the trigger pin
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+
+  // Send a 10 µs pulse
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+
+  // Read echo time
+  duration = pulseIn(echo, HIGH);
+
+  // Convert to distance (cm)
+  cm = duration * 0.034 / 2;
+
+  // Display on Virtual Terminal
+  Serial.print("Distance = ");
+  Serial.print(cm);
+  Serial.println(" cm");
+
+  delay(500);
+}
