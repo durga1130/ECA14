@@ -1,0 +1,16 @@
+int number = 0;
+
+void setup()
+{
+  Serial.begin(9600);   // Send and receive at 9600 baud
+}
+
+void loop()
+{
+  Serial.print("Number is ");
+  Serial.println(number);   // Print the number
+
+  delay(500);               // Delay half a second
+
+  number++;                 // Increment the number
+}
